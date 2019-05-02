@@ -39,8 +39,8 @@ WORKDIR /tmp
 
 # Installing packages
 RUN apt-get update -qq > /dev/null && \
-    apt-get -y install cmake && \
-    apt-get install ubuntu-make \
+    yes | apt-get -y install cmake && \
+    yes | apt-get install ubuntu-make \
         automake \
         libtool \
         intltool \
@@ -48,9 +48,9 @@ RUN apt-get update -qq > /dev/null && \
         gnome-common \
         gobject-introspection \
         nasm && \
-    apt-get install -qq locales > /dev/null && \
+    yes | apt-get install -qq locales > /dev/null && \
     locale-gen "$LANG" > /dev/null && \
-    apt-get install -qq --no-install-recommends \
+    yes | apt-get install -qq --no-install-recommends \
         build-essential \
         autoconf \
         curl \
@@ -81,7 +81,7 @@ RUN apt-get update -qq > /dev/null && \
     echo "Installing nodejs, npm, cordova, ionic, react-native" && \
     curl -sL -k https://deb.nodesource.com/setup_${NODE_VERSION} \
         | bash - > /dev/null && \
-    apt-get install -qq nodejs > /dev/null && \
+    yes | apt-get install -qq nodejs > /dev/null && \
     apt-get clean > /dev/null && \
     rm -rf /var/lib/apt/lists/ && \
     npm install --quiet -g npm > /dev/null && \
