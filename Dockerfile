@@ -39,6 +39,15 @@ WORKDIR /tmp
 
 # Installing packages
 RUN apt-get update -qq > /dev/null && \
+    apt-get -y install cmake && \
+    apt-get install ubuntu-make \
+        automake \
+        libtool \
+        intltool \
+        gtk-doc-tools \
+        gnome-common \
+        gobject-introspection \
+        nasm && \
     apt-get install -qq locales > /dev/null && \
     locale-gen "$LANG" > /dev/null && \
     apt-get install -qq --no-install-recommends \
