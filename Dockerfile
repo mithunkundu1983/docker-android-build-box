@@ -40,7 +40,7 @@ WORKDIR /tmp
 # Installing packages
 RUN apt-get update -qq > /dev/null && \
     yes | apt-get -y install cmake && \
-    yes | apt-get install ubuntu-make \
+    yes | apt-get install build-essential \
         automake \
         libtool \
         intltool \
